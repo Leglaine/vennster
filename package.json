@@ -1,0 +1,13 @@
+{
+  "name": "vennster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "author": "Lexi Wright",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon -r dotenv/config server.js"
+  }
+}
