@@ -1,21 +1,12 @@
 const express = require("express");
-const { Pool } = require("pg");
 const { handleError } = require("./utils/error");
+const usersRouter = require("./api/users/usersRouter");
 
 app = express();
 app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
-
-pool.connect((err) => {
-  if (err) throw err;
-  console.log("Database connection successfully established");
-});
+app.use("/api/v1/users", usersRouter);
 
 app.get("/", (req, res, next) => {
   res.render("index");
