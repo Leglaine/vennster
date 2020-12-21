@@ -1,5 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary: #800080;
+  --secondary: #008080;
+  --dark-grey: #333333;
+  --form-width: 250px;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Epilogue", sans-serif;
+  font-size: 12pt;
+}
+
+body {
+  background-color: var(--dark-grey);
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 24pt;
+  font-weight: 400;
+  margin-top: 60px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 50px;
+  background-color: var(--primary);
+}
+
+.form {
+  width: var(--form-width);
+  margin: auto;
+}
+
+.form__input {
+  width: var(--form-width);
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.form__fieldset {
+  width: var(--form-width);
+  border: none;
+}
+
+.form__legend {
+  color: white;
+  padding: 5px 0px 2px 0px;
+}
+
+.form__select {
+  width: var(--form-width);
+  border-radius: 5px;
+  padding: 3px;
+  background-color: white;
+}
+
+.birthday {
+  width: 32%;
+}
+
+.form__button {
+  width: var(--form-width);
+  margin: 5px 0px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--secondary);
+  color: white;
+}
+
+.white {
+  color: white;
+}
+
+.center {
+  text-align: center;
 }
