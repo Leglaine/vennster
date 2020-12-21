@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/public/css/style.css" rel="stylesheet" />
+    <title>Sign Up | Vennster</title>
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+    <form>
+      <input
+        name="name"
+        placeholder="Full name"
+        type="text"
+        autocomplete="off"
+        required
+        autofocus
+      />
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        autocomplete="off"
+        required
+      />
+      <input
+        name="password"
+        placeholder="Password"
+        type="password"
+        autocomplete="off"
+        required
+      />
+      <input
+        name="confirmation"
+        placeholder="Confirm password"
+        type="password"
+        autocomplete="off"
+        required
+      />
+      <fieldset>
+        <legend>Birthday</legend>
+        <select name="birthYear">
+          <option value="" selected disabled hidden>YYYY</option>
+          <% let date = new Date() %> <% let year = date.getFullYear() %> <% for
+          (let i = year; i >= year - 120; i--) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <select name="birthMonth">
+          <option value="" selected disabled hidden>MM</option>
+          <% for (let i = 1; i <= 12; i++) { %> <% str = i.toString() %> <% str
+          = str.padStart(2, "0") %>
+          <option value="<%= str %>"><%= str %></option>
+          <% } %>
+        </select>
+        <select name="birthDate">
+          <option value="" selected disabled hidden>DD</option>
+          <% for (let i = 1; i <= 31; i++) { %> <% str = i.toString() %> <% str
+          = str.padStart(2, "0") %>
+          <option value="<%= str %>"><%= str %></option>
+          <% } %>
+        </select>
+      </fieldset>
+      <button>Submit</button>
+      <p>Already have an account? <a href="/login">Log In</a></p>
+    </form>
+  </body>
+</html>

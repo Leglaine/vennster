@@ -21,6 +21,10 @@ app.get("/", (req, res, next) => {
   res.render("index");
 });
 
+app.get("/signup", (req, res, next) => {
+  res.render("signup");
+});
+
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("*", (req, res, next) => {
