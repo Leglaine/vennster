@@ -1,19 +1,37 @@
 const { Pool } = require("pg");
 
-const pool = new Pool({
+const config = {
   connectionString: process.env.DATABASE_URL,
   ssl: {
+    sslmode: "require",
     rejectUnauthorized: false,
   },
-});
+};
+
+const pool = new Pool(config);
 
 module.exports = {
-  query: (text, params, callback) => {
-    return pool.query(text, params, callback);
+  // For single queries
+  // Automatically releases client
+  async query(text, params) {
+    const response = await pool.query(text, params);
+    return response;
   },
-  getClient: (callback) => {
-    pool.connect((err, client, done) => {
-      callback(err, client, done);
-    });
+  // For transactions
+  // Client must be released
+  async getClient() {
+    const client = await pool.connect();
+    const query = client.query;
+    const release = client.release;
+
+    client.query = (...args) => {
+      return query.apply(client, args);
+    };
+
+    client.release = () => {
+      return release.apply(client);
+    };
+
+    return client;
   },
 };
