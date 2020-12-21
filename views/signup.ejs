@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Sign Up</h1>
-    <form>
+    <form action="/api/v1/users" method="POST">
       <input
         name="name"
         placeholder="Full name"
@@ -63,7 +63,7 @@
         </select>
       </fieldset>
       <button>Submit</button>
-      <p>Already have an account? <a href="/login">Log In</a></p>
+      <p>Already have an account? <a href="/login">Log In.</a></p>
     </form>
   </body>
 </html>
