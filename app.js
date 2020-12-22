@@ -2,6 +2,8 @@ const express = require("express");
 const { handleError, Err } = require("./utils/error");
 const usersRouter = require("./api/users/usersRouter");
 const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
+const sessionPool = require("pg").Pool;
 const { requireLogin } = require("./utils/login");
 const db = require("./db");
 const asyncHandler = require("./utils/async");
@@ -9,14 +11,32 @@ const asyncHandler = require("./utils/async");
 app = express();
 app.set("view engine", "ejs");
 
+const sessionDBaccess = new sessionPool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    sslmode: "require",
+    rejectUnauthorized: false,
+  },
+});
+
 // Allow express to parse form input
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
+    store: new pgSession({
+      pool: sessionDBaccess,
+      tableName: "sessions",
+    }),
+    name: "SID",
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      sameSite: true,
+      secure: false,
+    },
   })
 );
 
