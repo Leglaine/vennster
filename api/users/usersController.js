@@ -1,6 +1,7 @@
 const asyncHandler = require("../../utils/async");
 const db = require("../../db");
 const bcrypt = require("bcrypt");
+const { Err } = require("../../utils/error");
 
 exports.createUser = asyncHandler(async (req, res, next) => {
   const {
@@ -47,4 +48,36 @@ exports.createUser = asyncHandler(async (req, res, next) => {
   } finally {
     client.release();
   }
+});
+
+exports.login = asyncHandler(async (req, res, next) => {
+  delete req.session.user;
+  const { email, password } = req.body;
+  const response = await db.query("SELECT * FROM auth WHERE email = $1", [
+    email,
+  ]);
+
+  // TODO: Ensure all required inputs were submitted
+
+  if (response["rows"].length < 1) {
+    throw new Err("Invalid email and/or password", 403);
+  }
+
+  const id = response["rows"][0]["user_id"];
+  const hash = response["rows"][0]["hash"];
+  const verified = response["rows"][0]["verified"];
+
+  const matches = await bcrypt.compare(password, hash);
+
+  if (!matches) {
+    throw new Err("Invalid email and/or password", 403);
+  }
+
+  // if (!verified) {
+  //   throw new Err("Please validate your email", 403);
+  // }
+
+  req.session.user = id;
+
+  res.redirect("/");
 });
