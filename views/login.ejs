@@ -9,5 +9,28 @@
   <body>
     <%- include("header") %>
     <h1>Log In</h1>
+    <form class="form" action="/api/v1/users/login" method="POST">
+      <input
+        class="form__input"
+        name="email"
+        placeholder="Email"
+        type="email"
+        autocomplete="off"
+        required
+        autofocus
+      />
+      <input
+        class="form__input"
+        name="password"
+        placeholder="Password"
+        type="password"
+        autocomplete="off"
+        required
+      />
+      <button class="form__button">Submit</button>
+    </form>
+    <p class="white center">
+      Don't have an account? <a href="/signup">Sign Up.</a>
+    </p>
   </body>
 </html>
