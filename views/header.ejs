@@ -1,5 +1,33 @@
 <header class="navbar">
-  <a href="/">
-    <img />
-  </a>
+  <div class="logo">
+    <a class="logo__a" href="/">
+      <img
+        class="logo__img"
+        src="/public/images/vennster-logo.png"
+        alt="vennster logo"
+      />
+    </a>
+  </div>
+  <% if (user) { %>
+  <form class="search">
+    <input class="search__input" name="q" placeholder="Search" type="text" />
+    <button class="search__button">Go</button>
+  </form>
+  <% } %>
+  <nav class="menu">
+    <% if (user) { %>
+    <a class="menu__a" href="/">Home</a>
+    <a class="menu__a" href="/logout">Log Out</a>
+    <% } else { %>
+    <a class="menu__a" href="/login">Log In</a>
+    <a class="menu__a" href="/signup">Sign Up</a>
+    <% } %>
+  </nav>
+  <button class="toggler" onclick="toggleMenu()">
+    <img
+      class="toggler__img"
+      src="/public/images/menu-icon.png"
+      alt="menu icon"
+    />
+  </button>
 </header>
