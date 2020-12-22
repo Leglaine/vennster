@@ -3,6 +3,7 @@ const db = require("../../db");
 const bcrypt = require("bcrypt");
 const { Err } = require("../../utils/error");
 const { DateTime } = require("luxon");
+const { sendVerificationEmail } = require("../../utils/email");
 
 exports.createUser = asyncHandler(async (req, res, next) => {
   const {
@@ -57,13 +58,19 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
   const birthday = `${birthYear}-${birthMonth}-${birthDate}`;
 
-  const age = DateTime.fromISO(birthday).diffNow("years");
+  const format = {
+    year: birthYear,
+    month: birthMonth,
+    day: birthDate,
+  };
+
+  let age = await DateTime.fromObject(format).diffNow("years").years;
+
+  age = -age;
 
   if (age < 13) {
     throw new Err("You must be at least 13 years old", 403);
   }
-
-  // TODO: Send verification email
 
   const hash = await bcrypt.hash(password, 10);
 
@@ -85,6 +92,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
     await client.query("COMMIT");
     res.redirect("/login");
+    sendVerificationEmail(email, id);
   } catch (err) {
     await client.query("ROLLBACK");
     next(err);
@@ -123,9 +131,9 @@ exports.login = asyncHandler(async (req, res, next) => {
     throw new Err("Invalid email and/or password", 403);
   }
 
-  // if (!verified) {
-  //   throw new Err("Please validate your email", 403);
-  // }
+  if (!verified) {
+    throw new Err("Please validate your email", 403);
+  }
 
   req.session.user = id;
 
