@@ -2,6 +2,7 @@ const asyncHandler = require("../../utils/async");
 const db = require("../../db");
 const bcrypt = require("bcrypt");
 const { Err } = require("../../utils/error");
+const { DateTime } = require("luxon");
 
 exports.createUser = asyncHandler(async (req, res, next) => {
   const {
@@ -14,13 +15,55 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     birthDate,
   } = req.body;
 
-  // TODO: Ensure all required fields were submitted
-  // TODO: Ensure email doesn't already exist
-  // TODO: Ensure password matches confirmation
-  // TODO: Ensure user is at least 13 years old
-  // TODO: Send verification email
+  if (!name) {
+    throw new Err("Name is required", 403);
+  }
+
+  if (!email) {
+    throw new Err("Email is required", 403);
+  }
+
+  if (!password) {
+    throw new Err("Password is required", 403);
+  }
+
+  if (!confirmation) {
+    throw new Err("Password confirmation is required", 403);
+  }
+
+  if (!birthYear) {
+    throw new Err("Birth year is required", 403);
+  }
+
+  if (!birthMonth) {
+    throw new Err("Birth month is required", 403);
+  }
+
+  if (!birthDate) {
+    throw new Err("Birth date is required", 403);
+  }
+
+  const response = await db.query("SELECT * FROM auth WHERE email = $1", [
+    email,
+  ]);
+
+  if (response["rows"].length > 0) {
+    throw new Err("A user with that email already exists", 409);
+  }
+
+  if (confirmation !== password) {
+    throw new Err("Password must match confirmation", 403);
+  }
 
   const birthday = `${birthYear}-${birthMonth}-${birthDate}`;
+
+  const age = DateTime.fromISO(birthday).diffNow("years");
+
+  if (age < 13) {
+    throw new Err("You must be at least 13 years old", 403);
+  }
+
+  // TODO: Send verification email
 
   const hash = await bcrypt.hash(password, 10);
 
