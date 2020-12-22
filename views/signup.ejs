@@ -35,21 +35,21 @@
   />
   <fieldset class="form__fieldset">
     <legend class="form__legend">Birthday</legend>
-    <select class="form__select birthday" name="birthYear">
+    <select class="form__select birthday" name="birthYear" required>
       <option value="" selected disabled hidden>YYYY</option>
       <% let date = new Date() %> <% let year = date.getFullYear() %> <% for
       (let i = year; i >= year - 120; i--) { %>
       <option value="<%= i %>"><%= i %></option>
       <% } %>
     </select>
-    <select class="form__select birthday" name="birthMonth">
+    <select class="form__select birthday" name="birthMonth" required>
       <option value="" selected disabled hidden>MM</option>
       <% for (let i = 1; i <= 12; i++) { %> <% str = i.toString() %> <% str =
       str.padStart(2, "0") %>
       <option value="<%= str %>"><%= str %></option>
       <% } %>
     </select>
-    <select class="form__select birthday" name="birthDate">
+    <select class="form__select birthday" name="birthDate" required>
       <option value="" selected disabled hidden>DD</option>
       <% for (let i = 1; i <= 31; i++) { %> <% str = i.toString() %> <% str =
       str.padStart(2, "0") %>
