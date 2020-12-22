@@ -27,14 +27,6 @@ h1 {
   margin-top: 60px;
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 50px;
-  background-color: var(--primary);
-}
-
 .form {
   width: var(--form-width);
   margin: auto;
