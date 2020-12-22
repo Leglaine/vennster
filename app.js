@@ -1,14 +1,24 @@
 const express = require("express");
 const { handleError } = require("./utils/error");
 const usersRouter = require("./api/users/usersRouter");
+const session = require("express-session");
+const { requireLogin } = require("./utils/login");
 
 app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 app.use("/api/v1/users", usersRouter);
 
-app.get("/", (req, res, next) => {
+app.get("/", requireLogin, (req, res, next) => {
   res.render("index");
 });
 
@@ -17,6 +27,7 @@ app.get("/signup", (req, res, next) => {
 });
 
 app.get("/login", (req, res, next) => {
+  delete req.session.user;
   res.render("login");
 });
 
