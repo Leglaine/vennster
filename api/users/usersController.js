@@ -96,11 +96,18 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 exports.login = asyncHandler(async (req, res, next) => {
   delete req.session.user;
   const { email, password } = req.body;
+
+  if (!email) {
+    throw new Err("Email is required", 403);
+  }
+
+  if (!password) {
+    throw new Err("Password is required", 403);
+  }
+
   const response = await db.query("SELECT * FROM auth WHERE email = $1", [
     email,
   ]);
-
-  // TODO: Ensure all required inputs were submitted
 
   if (response["rows"].length < 1) {
     throw new Err("Invalid email and/or password", 403);
