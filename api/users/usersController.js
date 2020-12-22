@@ -79,5 +79,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 
   req.session.user = id;
 
+  res.locals.user = req.session.user;
+
   res.redirect("/");
 });
