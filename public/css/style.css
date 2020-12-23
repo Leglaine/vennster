@@ -27,6 +27,19 @@ h1 {
   margin-top: 60px;
 }
 
+a {
+  text-decoration: none;
+  color: var(--secondary);
+}
+
+a:visited {
+  color: var(--primary);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .form {
   width: var(--form-width);
   margin: auto;

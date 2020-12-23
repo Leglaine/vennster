@@ -37,6 +37,10 @@
   transition: right 0.3s ease-out;
 }
 
+.menu .menu__a {
+  color: white;
+}
+
 .search {
   display: none;
   position: absolute;
@@ -55,6 +59,10 @@
 .search__button {
   display: none;
   background-color: var(--secondary);
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: white;
 }
 
 .toggler {
@@ -63,5 +71,33 @@
   outline: none;
   float: right;
   height: calc(var(--height) - 10px);
-  margin: 5px 10px;
+  margin: 5px 10px 5px 0px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .toggler {
+    display: none;
+  }
+
+  .menu {
+    position: absolute;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    top: 18px;
+    left: 310px;
+    opacity: 1;
+    background-color: transparent;
+  }
+
+  .menu--loggedout {
+    left: 60px;
+  }
+
+  .search,
+  .search__input,
+  .search__button {
+    display: inline-block;
+    top: 12px;
+  }
 }
