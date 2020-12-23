@@ -13,15 +13,9 @@
     <input class="search__input" name="q" placeholder="Search" type="text" />
     <button class="search__button">Go</button>
   </form>
-  <% } %>
-  <nav class="menu">
-    <% if (user) { %>
+  <nav id="menu" class="menu">
     <a class="menu__a" href="/">Home</a>
     <a class="menu__a" href="/logout">Log Out</a>
-    <% } else { %>
-    <a class="menu__a" href="/login">Log In</a>
-    <a class="menu__a" href="/signup">Sign Up</a>
-    <% } %>
   </nav>
   <button class="toggler" onclick="toggleMenu()">
     <img
@@ -30,4 +24,20 @@
       alt="menu icon"
     />
   </button>
+  <button class="toggler">
+    <img src="/public/images/search-icon.png" alt="search icon" />
+  </button>
+  <% } else { %>
+  <nav id="menu" class="menu menu--loggedout">
+    <a class="menu__a" href="/login">Log In</a>
+    <a class="menu__a" href="/signup">Sign Up</a>
+  </nav>
+  <button class="toggler" onclick="toggleMenu()">
+    <img
+      class="toggler__img"
+      src="/public/images/menu-icon.png"
+      alt="menu icon"
+    />
+  </button>
+  <% } %>
 </header>
