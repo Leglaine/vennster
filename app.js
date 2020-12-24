@@ -1,13 +1,14 @@
 const express = require("express");
 const aws = require("aws-sdk");
 const { handleError, Err } = require("./utils/error");
-const usersRouter = require("./api/users/usersRouter");
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const sessionPool = require("pg").Pool;
 const { requireLogin } = require("./utils/login");
 const db = require("./db");
 const asyncHandler = require("./utils/async");
+const signupRouter = require("./api/signup/signupRouter");
+const loginRouter = require("./api/login/loginRouter");
 
 app = express();
 app.set("view engine", "ejs");
@@ -54,8 +55,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/v1/users", usersRouter);
-
 app.get("/sign-s3", (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query["file-name"];
@@ -86,15 +85,9 @@ app.get("/", requireLogin, (_req, res, _next) => {
   res.render("layout", { title: "Home", main: "index" });
 });
 
-app.get("/signup", (_req, res, _next) => {
-  res.render("layout", { title: "Sign Up", main: "signup" });
-});
+app.use("/signup", signupRouter);
 
-app.get("/login", (req, res, _next) => {
-  delete req.session.user;
-  res.locals.user = null;
-  res.render("layout", { title: "Log In", main: "login" });
-});
+app.use("/login", loginRouter);
 
 app.get("/logout", (req, res, _next) => {
   delete req.session.user;
