@@ -74,6 +74,11 @@
   margin: 5px 10px 5px 0px;
 }
 
+.toggler__img {
+  width: 40px;
+  height: 40px;
+}
+
 @media only screen and (min-width: 1024px) {
   .toggler {
     display: none;
