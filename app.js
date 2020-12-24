@@ -1,14 +1,13 @@
 const express = require("express");
-const { handleError, Err } = require("./utils/error");
+const { handleError } = require("./utils/error");
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const sessionPool = require("pg").Pool;
 const { requireLogin } = require("./utils/login");
-const db = require("./db");
-const asyncHandler = require("./utils/async");
 const signupRouter = require("./api/signup/signupRouter");
 const loginRouter = require("./api/login/loginRouter");
 const signS3Router = require("./api/sign-s3/signS3Router");
+const activateRouter = require("./api/activate/activateRouter");
 
 app = express();
 app.set("view engine", "ejs");
@@ -67,22 +66,7 @@ app.get("/account", requireLogin, (_req, res, _next) => {
   res.render("layout", { title: "Account", main: "account" });
 });
 
-app.get(
-  "/activate/:id/:code",
-  asyncHandler(async (req, res, _next) => {
-    const response = await db.query("SELECT * FROM codes WHERE code = $1", [
-      req.params.code,
-    ]);
-    if (response["rows"].length < 1) {
-      throw new Err("Could not activate account");
-    }
-    db.query("UPDATE auth SET verified = true WHERE user_id = $1", [
-      req.params.id,
-    ]);
-    db.query("DELETE FROM codes WHERE code = $1", [req.params.code]);
-    res.redirect("/login");
-  })
-);
+app.use("/activate", activateRouter);
 
 app.use("/public", express.static(__dirname + "/public"));
 
