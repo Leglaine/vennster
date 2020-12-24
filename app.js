@@ -28,26 +28,26 @@ const sessionDBaccess = new sessionPool({
   },
 });
 
+const sessionConfig = {
+  store: new pgSession({
+    pool: sessionDBaccess,
+    tableName: "sessions",
+  }),
+  name: "SID",
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    sameSite: true,
+    secure: false,
+  },
+};
+
 // Allow express to parse form input
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  session({
-    store: new pgSession({
-      pool: sessionDBaccess,
-      tableName: "sessions",
-    }),
-    name: "SID",
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: true,
-      secure: false,
-    },
-  })
-);
+app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
@@ -82,33 +82,33 @@ app.get("/sign-s3", (req, res) => {
   });
 });
 
-app.get("/", requireLogin, (req, res, next) => {
+app.get("/", requireLogin, (_req, res, _next) => {
   res.render("layout", { title: "Home", main: "index" });
 });
 
-app.get("/signup", (req, res, next) => {
+app.get("/signup", (_req, res, _next) => {
   res.render("layout", { title: "Sign Up", main: "signup" });
 });
 
-app.get("/login", (req, res, next) => {
+app.get("/login", (req, res, _next) => {
   delete req.session.user;
   res.locals.user = null;
   res.render("layout", { title: "Log In", main: "login" });
 });
 
-app.get("/logout", (req, res, next) => {
+app.get("/logout", (req, res, _next) => {
   delete req.session.user;
   res.locals.user = null;
   res.redirect("/login");
 });
 
-app.get("/account", (req, res, next) => {
+app.get("/account", requireLogin, (_req, res, _next) => {
   res.render("layout", { title: "Account", main: "account" });
 });
 
 app.get(
   "/activate/:id/:code",
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res, _next) => {
     const response = await db.query("SELECT * FROM codes WHERE code = $1", [
       req.params.code,
     ]);
@@ -125,7 +125,7 @@ app.get(
 
 app.use("/public", express.static(__dirname + "/public"));
 
-app.get("*", (req, res, next) => {
+app.get("*", (_req, res, _next) => {
   res.render("layout", {
     title: "Error",
     main: "error",
@@ -134,7 +134,7 @@ app.get("*", (req, res, next) => {
   });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
   handleError(err, res);
 });
 
