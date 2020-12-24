@@ -61,6 +61,12 @@ app.get("/login", (req, res, next) => {
   res.render("layout", { title: "Log In", main: "login" });
 });
 
+app.get("/logout", (req, res, next) => {
+  delete req.session.user;
+  res.locals.user = null;
+  res.redirect("/login")
+});
+
 app.get(
   "/activate/:id/:code",
   asyncHandler(async (req, res, next) => {
