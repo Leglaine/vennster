@@ -1,4 +1,5 @@
 const express = require("express");
+const aws = require("aws-sdk");
 const { handleError, Err } = require("./utils/error");
 const usersRouter = require("./api/users/usersRouter");
 const session = require("express-session");
@@ -10,6 +11,14 @@ const asyncHandler = require("./utils/async");
 
 app = express();
 app.set("view engine", "ejs");
+
+aws.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: "us-east-2",
+});
+
+const S3_BUCKET = process.env.S3_BUCKET;
 
 const sessionDBaccess = new sessionPool({
   connectionString: process.env.DATABASE_URL,
@@ -47,6 +56,32 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/users", usersRouter);
 
+app.get("/sign-s3", (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query["file-name"];
+  const fileType = req.query["file-type"];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: "public-read",
+  };
+
+  s3.getSignedUrl("putObject", s3Params, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+    };
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
+
 app.get("/", requireLogin, (req, res, next) => {
   res.render("layout", { title: "Home", main: "index" });
 });
@@ -64,7 +99,11 @@ app.get("/login", (req, res, next) => {
 app.get("/logout", (req, res, next) => {
   delete req.session.user;
   res.locals.user = null;
-  res.redirect("/login")
+  res.redirect("/login");
+});
+
+app.get("/account", (req, res, next) => {
+  res.render("layout", { title: "Account", main: "account" });
 });
 
 app.get(
