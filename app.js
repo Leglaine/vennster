@@ -1,6 +1,7 @@
 const express = require("express");
 const { handleError } = require("./utils/error");
 const { requireLogin } = require("./utils/login");
+const editProfileRouter = require("./api/edit-profile/editProfileRouter");
 const signupRouter = require("./api/signup/signupRouter");
 const loginRouter = require("./api/login/loginRouter");
 const logoutRouter = require("./api/logout/logoutRouter");
@@ -29,6 +30,7 @@ app.get("/", requireLogin, (_req, res, _next) => {
 
 app.use("/account", accountRouter);
 app.use("/activate", activateRouter);
+app.use("/edit-profile", editProfileRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/sign-s3", signS3Router);
