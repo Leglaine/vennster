@@ -1,1 +1,10 @@
-<h1><%= name %></h1>
+<div id="cover-image"></div>
+<% if (!profileImage) { %>
+<img id="profile-image" src="/public/images/default-profile-image.png" />
+<% } else { %>
+<div
+  id="profile-image"
+  style="background-image: url('<%= profileImage %>')"
+></div>
+<% } %>
+<h1><%= title %></h1>
