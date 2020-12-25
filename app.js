@@ -5,6 +5,7 @@ const signupRouter = require("./api/signup/signupRouter");
 const loginRouter = require("./api/login/loginRouter");
 const signS3Router = require("./api/sign-s3/signS3Router");
 const activateRouter = require("./api/activate/activateRouter");
+const usersRouter = require("./api/users/usersRouter");
 const session = require("./session");
 
 app = express();
@@ -24,23 +25,21 @@ app.get("/", requireLogin, (_req, res, _next) => {
   res.render("layout", { title: "Home", main: "index" });
 });
 
-app.use("/sign-s3", signS3Router);
+app.get("/account", requireLogin, (_req, res, _next) => {
+  res.render("layout", { title: "Account", main: "account" });
+});
 
-app.use("/signup", signupRouter);
-
+app.use("/activate", activateRouter);
 app.use("/login", loginRouter);
+app.use("/sign-s3", signS3Router);
+app.use("/signup", signupRouter);
+app.use("/users", usersRouter);
 
 app.get("/logout", (req, res, _next) => {
   delete req.session.user;
   res.locals.user = null;
   res.redirect("/login");
 });
-
-app.get("/account", requireLogin, (_req, res, _next) => {
-  res.render("layout", { title: "Account", main: "account" });
-});
-
-app.use("/activate", activateRouter);
 
 app.use("/public", express.static(__dirname + "/public"));
 
