@@ -91,3 +91,10 @@ a:hover {
 .center {
   text-align: center;
 }
+
+#profile-image {
+  display: block;
+  height: 100px;
+  width: 100px;
+  margin: 60px auto 10px auto;
+}
