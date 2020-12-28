@@ -1,4 +1,5 @@
 const aws = require("aws-sdk");
+const uuid = require("uuid").v4;
 
 aws.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -10,7 +11,7 @@ const S3_BUCKET = process.env.S3_BUCKET;
 
 exports.getSignS3 = (req, res, _next) => {
   const s3 = new aws.S3();
-  const fileName = req.query["file-name"];
+  const fileName = uuid();
   const fileType = req.query["file-type"];
   const s3Params = {
     Bucket: S3_BUCKET,
