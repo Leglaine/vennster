@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const activateController = require("./activateController");
+const activateController = require("./activate-controller");
 
 router.get("/:id/:code", activateController.getActivate);
 

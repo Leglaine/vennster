@@ -1,7 +1,7 @@
 const db = require("../../db");
 
 exports.getEditProfile = (req, res, next) => {
-  res.render("layout", { title: "Edit Profile", main: "editProfile" });
+  res.render("layout", { title: "Edit Profile", main: "edit-profile" });
 };
 
 exports.postEditProfile = (req, res, next) => {

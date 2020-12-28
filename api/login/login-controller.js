@@ -31,16 +31,11 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 
   const id = response["rows"][0]["user_id"];
   const hash = response["rows"][0]["hash"];
-  const verified = response["rows"][0]["verified"];
 
   const matches = await bcrypt.compare(password, hash);
 
   if (!matches) {
     throw new Err("Invalid email and/or password", 403);
-  }
-
-  if (!verified) {
-    throw new Err("Please validate your email", 403);
   }
 
   req.session.user = id;

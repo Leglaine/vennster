@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const usersController = require("./usersController");
+const usersController = require("./users-controller");
 
 router.get("/:id", usersController.getUser);
 

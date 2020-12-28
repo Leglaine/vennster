@@ -1,14 +1,14 @@
 const express = require("express");
 const { handleError } = require("./utils/error");
 const { requireLogin } = require("./utils/login");
-const editProfileRouter = require("./api/edit-profile/editProfileRouter");
-const signupRouter = require("./api/signup/signupRouter");
-const loginRouter = require("./api/login/loginRouter");
-const logoutRouter = require("./api/logout/logoutRouter");
-const signS3Router = require("./api/sign-s3/signS3Router");
-const activateRouter = require("./api/activate/activateRouter");
-const accountRouter = require("./api/account/accountRouter");
-const usersRouter = require("./api/users/usersRouter");
+const editProfileRouter = require("./api/edit-profile/edit-profile-router");
+const signupRouter = require("./api/signup/signup-router");
+const loginRouter = require("./api/login/login-router");
+const logoutRouter = require("./api/logout/logout-router");
+const signS3Router = require("./api/sign-s3/sign-s3-router");
+const activateRouter = require("./api/activate/activate-router");
+const accountRouter = require("./api/account/account-router");
+const usersRouter = require("./api/users/users-router");
 const session = require("./session");
 
 app = express();
