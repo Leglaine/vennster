@@ -93,8 +93,11 @@ a:hover {
 }
 
 #profile-image {
+  --size: 100px;
   display: block;
-  height: 100px;
-  width: 100px;
+  height: var(--size);
+  width: var(--size);
   margin: 60px auto 10px auto;
+  background-size: var(--size);
+  border-radius: calc(var(--size) / 2);
 }
