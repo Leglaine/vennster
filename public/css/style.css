@@ -4,7 +4,6 @@
   --primary: #800080;
   --secondary: #008080;
   --dark-grey: #333333;
-  --form-width: 250px;
 }
 
 * {
@@ -40,50 +39,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.form {
-  width: var(--form-width);
-  margin: auto;
-}
-
-.form__input {
-  width: var(--form-width);
-  border-radius: 5px;
-  border: none;
-  padding: 5px;
-  margin-top: 5px;
-}
-
-.form__fieldset {
-  width: var(--form-width);
-  border: none;
-}
-
-.form__legend {
-  color: white;
-  padding: 5px 0px 2px 0px;
-}
-
-.form__select {
-  width: var(--form-width);
-  border-radius: 5px;
-  padding: 3px;
-  background-color: white;
-}
-
-.birthday {
-  width: 32%;
-}
-
-.form__button {
-  width: var(--form-width);
-  margin: 5px 0px;
-  padding: 5px;
-  border-radius: 5px;
-  border: none;
-  background-color: var(--secondary);
-  color: white;
-}
-
 .white {
   color: white;
 }
@@ -110,4 +65,30 @@ a:hover {
 
 .name {
   margin: 10px;
+}
+
+#edit-profile {
+  text-align: center;
+}
+
+#edit-profile::before,
+#edit-profile::after {
+  content: "";
+  display: block;
+  width: 80vw;
+  max-width: 1000px;
+  margin: 5px auto;
+  border-bottom: 1px solid white;
+}
+
+#preview {
+  display: block;
+  border-radius: 50px;
+  margin: auto;
+}
+
+#file-input {
+  display: block;
+  margin: 5px auto;
+  width: 220px;
 }
