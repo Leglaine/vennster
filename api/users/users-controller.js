@@ -8,10 +8,12 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 
   const name = response["rows"][0]["name"];
   const profileImage = response["rows"][0]["profile_image"];
+  const coverImage = response["rows"][0]["cover_image"];
 
   res.render("layout", {
     title: name,
     main: "profile",
     profileImage: profileImage,
+    coverImage: coverImage,
   });
 });
