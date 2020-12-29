@@ -1,10 +1,5 @@
 <h1>Edit Profile</h1>
-<img
-  id="preview"
-  src="/public/images/default-profile-image.png"
-  width="100"
-  height="100"
-/>
+<img id="preview" src="<%= profileImage %>" width="100" height="100" />
 <input id="file-input" type="file" onchange="handleFileChange()" />
 
 <form action="/edit-profile" method="POST">
@@ -12,7 +7,8 @@
     type="hidden"
     id="profile-image"
     name="profile-image"
-    value="/public/images/default-profile-image.png"
+    value="<%= profileImage %>"
   />
+  <textarea placeholder="Bio"></textarea>
   <button>Submit</button>
 </form>
