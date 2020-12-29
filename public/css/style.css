@@ -97,7 +97,17 @@ a:hover {
   display: block;
   height: var(--size);
   width: var(--size);
-  margin: 60px auto 10px auto;
-  background-size: var(--size);
+  margin: auto;
   border-radius: calc(var(--size) / 2);
+}
+
+#cover-image {
+  display: block;
+  max-width: 80vw;
+  height: auto;
+  margin: 60px auto -50px auto;
+}
+
+.name {
+  margin: 10px;
 }
