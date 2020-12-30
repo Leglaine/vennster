@@ -1,64 +1,64 @@
 <h1>Sign Up</h1>
 <form class="form" action="/signup" method="POST">
-  <input
-    class="form__input"
-    name="name"
-    placeholder="Full name"
-    type="text"
-    autocomplete="off"
-    required
-    autofocus
-  />
-  <input
-    class="form__input"
-    name="email"
-    placeholder="Email"
-    type="email"
-    autocomplete="off"
-    required
-  />
-  <input
-    class="form__input"
-    name="password"
-    placeholder="Password"
-    type="password"
-    autocomplete="off"
-    required
-  />
-  <input
-    class="form__input"
-    name="confirmation"
-    placeholder="Confirm password"
-    type="password"
-    autocomplete="off"
-    required
-  />
-  <fieldset class="form__fieldset">
-    <legend class="form__legend">Birthday</legend>
-    <select class="form__select birthday" name="birthYear" required>
-      <option value="" selected disabled hidden>YYYY</option>
-      <% let date = new Date() %> <% let year = date.getFullYear() %> <% for
-      (let i = year; i >= year - 120; i--) { %>
-      <option value="<%= i %>"><%= i %></option>
-      <% } %>
-    </select>
-    <select class="form__select birthday" name="birthMonth" required>
-      <option value="" selected disabled hidden>MM</option>
-      <% for (let i = 1; i <= 12; i++) { %> <% str = i.toString() %> <% str =
-      str.padStart(2, "0") %>
-      <option value="<%= str %>"><%= str %></option>
-      <% } %>
-    </select>
-    <select class="form__select birthday" name="birthDate" required>
-      <option value="" selected disabled hidden>DD</option>
-      <% for (let i = 1; i <= 31; i++) { %> <% str = i.toString() %> <% str =
-      str.padStart(2, "0") %>
-      <option value="<%= str %>"><%= str %></option>
-      <% } %>
-    </select>
-  </fieldset>
-  <button class="form__button">Submit</button>
+    <input
+        class="form__input"
+        name="name"
+        placeholder="Full name"
+        type="text"
+        autocomplete="off"
+        required
+        autofocus
+    />
+    <input
+        class="form__input"
+        name="email"
+        placeholder="Email"
+        type="email"
+        autocomplete="off"
+        required
+    />
+    <input
+        class="form__input"
+        name="password"
+        placeholder="Password"
+        type="password"
+        autocomplete="off"
+        required
+    />
+    <input
+        class="form__input"
+        name="confirmation"
+        placeholder="Confirm password"
+        type="password"
+        autocomplete="off"
+        required
+    />
+    <fieldset class="form__fieldset">
+        <legend class="form__legend">Birthday</legend>
+        <select class="form__select birthday" name="birthYear" required>
+            <option value="" selected disabled hidden>YYYY</option>
+            <% let date = new Date() %> <% let year = date.getFullYear() %> <%
+            for (let i = year; i >= year - 120; i--) { %>
+            <option value="<%= i %>"><%= i %></option>
+            <% } %>
+        </select>
+        <select class="form__select birthday" name="birthMonth" required>
+            <option value="" selected disabled hidden>MM</option>
+            <% for (let i = 1; i <= 12; i++) { %> <% str = i.toString() %> <%
+            str = str.padStart(2, "0") %>
+            <option value="<%= str %>"><%= str %></option>
+            <% } %>
+        </select>
+        <select class="form__select birthday" name="birthDate" required>
+            <option value="" selected disabled hidden>DD</option>
+            <% for (let i = 1; i <= 31; i++) { %> <% str = i.toString() %> <%
+            str = str.padStart(2, "0") %>
+            <option value="<%= str %>"><%= str %></option>
+            <% } %>
+        </select>
+    </fieldset>
+    <button class="form__button">Submit</button>
 </form>
 <p class="white center">
-  Already have an account? <a href="/login">Log In.</a>
+    Already have an account? <a href="/login">Log In.</a>
 </p>

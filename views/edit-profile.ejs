@@ -3,12 +3,12 @@
 <input id="file-input" type="file" onchange="handleFileChange()" />
 
 <form action="/edit-profile" method="POST">
-  <input
-    type="hidden"
-    id="profile-image"
-    name="profile-image"
-    value="<%= profileImage %>"
-  />
-  <textarea placeholder="Bio"></textarea>
-  <button>Submit</button>
+    <input
+        type="hidden"
+        id="profile-image"
+        name="profile-image"
+        value="<%= profileImage %>"
+    />
+    <textarea name="bio" placeholder="Bio"><%= bio %></textarea>
+    <button>Submit</button>
 </form>

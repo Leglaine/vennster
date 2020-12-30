@@ -5,10 +5,14 @@
 ></img>
 <h1 class="name"><%= title %></h1>
 <p class="bio"><%= bio %></p>
+<% if (user == id) { %>
 <p id="edit-profile"><a href="/edit-profile">Edit Profile</a></p>
+<% } %>
 <h2>Posts</h2>
+<% if (user == id) { %>
 <form>
   <select></select>
   <textarea></textarea>
   <button>Create post</button>
 </form>
+<% } %>

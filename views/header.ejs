@@ -1,51 +1,56 @@
 <header class="navbar">
-  <div class="logo">
-    <a class="logo__a" href="/">
-      <img
-        class="logo__img"
-        src="/public/images/vennster-logo.png"
-        alt="vennster logo"
-      />
-    </a>
-  </div>
-  <% if (user) { %>
-  <form class="search">
-    <input class="search__input" name="q" placeholder="Search" type="text" />
-    <button class="search__button">Go</button>
-  </form>
-  <nav id="menu" class="menu">
-    <a class="menu__a" href="/">Home</a>
-    <a class="menu__a" href="/users/<%= user %>">Profile</a>
-    <a class="menu__a" href="/account">Account</a>
-    <a class="menu__a" href="/groups">Groups</a>
-    <a class="menu__a" href="/friend-requests">Friend Requests</a>
-    <a class="menu__a" href="/logout">Log Out</a>
-  </nav>
-  <button class="toggler" onclick="toggleMenu()">
-    <img
-      class="toggler__img"
-      src="/public/images/menu-icon.png"
-      alt="menu icon"
-    />
-  </button>
-  <button class="toggler">
-    <img
-      class="toggler__img"
-      src="/public/images/search-icon.png"
-      alt="search icon"
-    />
-  </button>
-  <% } else { %>
-  <nav id="menu" class="menu menu--loggedout">
-    <a class="menu__a" href="/login">Log In</a>
-    <a class="menu__a" href="/signup">Sign Up</a>
-  </nav>
-  <button class="toggler" onclick="toggleMenu()">
-    <img
-      class="toggler__img"
-      src="/public/images/menu-icon.png"
-      alt="menu icon"
-    />
-  </button>
-  <% } %>
+    <div class="logo">
+        <a class="logo__a" href="/">
+            <img
+                class="logo__img"
+                src="/public/images/vennster-logo.png"
+                alt="vennster logo"
+            />
+        </a>
+    </div>
+    <% if (user) { %>
+    <form class="search">
+        <input
+            class="search__input"
+            name="q"
+            placeholder="Search"
+            type="text"
+        />
+        <button class="search__button">Go</button>
+    </form>
+    <nav id="menu" class="menu">
+        <a class="menu__a" href="/">Home</a>
+        <a class="menu__a" href="/users/<%= user %>">Profile</a>
+        <a class="menu__a" href="/account">Account</a>
+        <a class="menu__a" href="/groups">Groups</a>
+        <a class="menu__a" href="/friend-requests">Friend Requests</a>
+        <a class="menu__a" href="/logout">Log Out</a>
+    </nav>
+    <button class="toggler" onclick="toggleMenu()">
+        <img
+            class="toggler__img"
+            src="/public/images/menu-icon.png"
+            alt="menu icon"
+        />
+    </button>
+    <button class="toggler">
+        <img
+            class="toggler__img"
+            src="/public/images/search-icon.png"
+            alt="search icon"
+        />
+    </button>
+    <% } else { %>
+    <nav id="menu" class="menu menu--loggedout">
+        <a class="menu__a" href="/login">Log In</a>
+        <a class="menu__a" href="/signup">Sign Up</a>
+    </nav>
+    <button class="toggler" onclick="toggleMenu()">
+        <img
+            class="toggler__img"
+            src="/public/images/menu-icon.png"
+            alt="menu icon"
+        />
+    </button>
+    <% } %>
 </header>

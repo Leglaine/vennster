@@ -1,44 +1,44 @@
 .form {
-  --form-width: 250px;
-  width: var(--form-width);
-  margin: auto;
+    --form-width: 250px;
+    width: var(--form-width);
+    margin: auto;
 }
 
 .form__input {
-  width: var(--form-width);
-  border-radius: 5px;
-  border: none;
-  padding: 5px;
-  margin-top: 5px;
+    width: var(--form-width);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    margin-top: 5px;
 }
 
 .form__fieldset {
-  width: var(--form-width);
-  border: none;
+    width: var(--form-width);
+    border: none;
 }
 
 .form__legend {
-  color: white;
-  padding: 5px 0px 2px 0px;
+    color: white;
+    padding: 5px 0px 2px 0px;
 }
 
 .form__select {
-  width: var(--form-width);
-  border-radius: 5px;
-  padding: 3px;
-  background-color: white;
+    width: var(--form-width);
+    border-radius: 5px;
+    padding: 3px;
+    background-color: white;
 }
 
 .birthday {
-  width: 32%;
+    width: 32%;
 }
 
 .form__button {
-  width: var(--form-width);
-  margin: 5px 0px;
-  padding: 5px;
-  border-radius: 5px;
-  border: none;
-  background-color: var(--secondary);
-  color: white;
+    width: var(--form-width);
+    margin: 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--secondary);
+    color: white;
 }

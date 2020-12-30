@@ -20,12 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session.start());
 
 app.use((req, res, next) => {
-  res.locals.user = req.session.user;
-  next();
+    res.locals.user = req.session.user;
+    next();
 });
 
 app.get("/", requireLogin, (_req, res, _next) => {
-  res.render("layout", { title: "Home", main: "index" });
+    res.render("layout", { title: "Home", main: "index" });
 });
 
 app.use("/account", accountRouter);
@@ -40,16 +40,16 @@ app.use("/users", usersRouter);
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("*", (_req, res, _next) => {
-  res.render("layout", {
-    title: "Error",
-    main: "error",
-    code: "404",
-    message: "Not Found",
-  });
+    res.render("layout", {
+        title: "Error",
+        main: "error",
+        code: "404",
+        message: "Not Found"
+    });
 });
 
 app.use((err, _req, res, _next) => {
-  handleError(err, res);
+    handleError(err, res);
 });
 
 module.exports = app;
