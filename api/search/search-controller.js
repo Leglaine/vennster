@@ -3,7 +3,7 @@ const asyncHandler = require("../../utils/async");
 
 exports.getSearch = asyncHandler(async (req, res, next) => {
     const q = req.query.q;
-    const results = await db.query("SELECT * FROM users WHERE name LIKE $1", [
+    const results = await db.query("SELECT * FROM users WHERE name ILIKE $1", [
         q
     ]);
     const rows = results["rows"];

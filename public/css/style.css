@@ -93,3 +93,9 @@ a:hover {
     margin: 5px auto;
     width: 220px;
 }
+
+@media only screen and (min-width: 1024px) {
+    #mobile-search {
+        display: none;
+    }
+}

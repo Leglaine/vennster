@@ -18,6 +18,18 @@ const usersRouter = require("./api/users/users-router");
 
 app = express();
 app.set("view engine", "ejs");
+app.set("views", [
+    __dirname + "/views",
+    __dirname + "/api/account",
+    __dirname + "/api/login",
+    __dirname + "/api/search",
+    __dirname + "/api/signup",
+    __dirname + "/api/users",
+    __dirname + "/api/reset-password",
+    __dirname + "/api/edit-profile",
+    __dirname + "/api/friend-requests",
+    __dirname + "/api/groups"
+]);
 
 // Allow express to parse form input
 app.use(express.urlencoded({ extended: true }));
