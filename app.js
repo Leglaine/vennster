@@ -9,6 +9,7 @@ const signS3Router = require("./api/sign-s3/sign-s3-router");
 const activateRouter = require("./api/activate/activate-router");
 const accountRouter = require("./api/account/account-router");
 const usersRouter = require("./api/users/users-router");
+const searchRouter = require("./api/search/search-router");
 const session = require("./session");
 
 app = express();
@@ -33,6 +34,7 @@ app.use("/activate", activateRouter);
 app.use("/edit-profile", editProfileRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
+app.use("/search", searchRouter);
 app.use("/sign-s3", signS3Router);
 app.use("/signup", signupRouter);
 app.use("/users", usersRouter);
