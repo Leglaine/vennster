@@ -1,1 +1,8 @@
 <h1>Search</h1>
+<form action="/search" method="GET">
+    <input name="q" placeholder="Search" type="text" />
+    <button>Go</button>
+</form>
+<% for (i = 0; i < results.length; i++) { %>
+<p><%= results[i]["name"] %></p>
+<% } %>
