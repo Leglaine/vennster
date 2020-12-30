@@ -27,6 +27,16 @@
     border-radius: 5px;
     padding: 3px;
     background-color: white;
+    color: black;
+}
+
+.form__select:invalid,
+.form__select[value=""] {
+    color: var(--light-grey);
+}
+
+.form__select option {
+    color: black;
 }
 
 .birthday {
