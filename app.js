@@ -1,11 +1,11 @@
 const express = require("express");
 const { handleError } = require("./utils/error");
-const { requireLogin } = require("./utils/login");
 const session = require("./session");
 
 const accountRouter = require("./api/account/account-router");
 const activateRouter = require("./api/activate/activate-router");
 const editProfileRouter = require("./api/edit-profile/edit-profile-router");
+const feedRouter = require("./api/feed/feed-router");
 const friendRequestsRouter = require("./api/friend-requests/friend-requests-router");
 const groupsRouter = require("./api/groups/groups-router");
 const loginRouter = require("./api/login/login-router");
@@ -28,7 +28,8 @@ app.set("views", [
     __dirname + "/api/reset-password",
     __dirname + "/api/edit-profile",
     __dirname + "/api/friend-requests",
-    __dirname + "/api/groups"
+    __dirname + "/api/groups",
+    __dirname + "/api/feed"
 ]);
 
 // Allow express to parse form input
@@ -41,10 +42,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", requireLogin, (_req, res, _next) => {
-    res.render("layout", { title: "Home", main: "index" });
-});
-
+app.use("/", feedRouter);
 app.use("/account", accountRouter);
 app.use("/activate", activateRouter);
 app.use("/edit-profile", editProfileRouter);
