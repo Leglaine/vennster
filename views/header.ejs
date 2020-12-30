@@ -9,7 +9,7 @@
         </a>
     </div>
     <% if (user) { %>
-    <form class="search">
+    <form class="search" action="/search" method="GET">
         <input
             class="search__input"
             name="q"
@@ -33,7 +33,7 @@
             alt="menu icon"
         />
     </button>
-    <button class="toggler">
+    <button class="toggler" onclick="search()">
         <img
             class="toggler__img"
             src="/public/images/search-icon.png"
