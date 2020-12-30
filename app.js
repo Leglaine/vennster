@@ -1,16 +1,20 @@
 const express = require("express");
 const { handleError } = require("./utils/error");
 const { requireLogin } = require("./utils/login");
+const session = require("./session");
+
+const accountRouter = require("./api/account/account-router");
+const activateRouter = require("./api/activate/activate-router");
 const editProfileRouter = require("./api/edit-profile/edit-profile-router");
-const signupRouter = require("./api/signup/signup-router");
+const friendRequestsRouter = require("./api/friend-requests/friend-requests-router");
+const groupsRouter = require("./api/groups/groups-router");
 const loginRouter = require("./api/login/login-router");
 const logoutRouter = require("./api/logout/logout-router");
-const signS3Router = require("./api/sign-s3/sign-s3-router");
-const activateRouter = require("./api/activate/activate-router");
-const accountRouter = require("./api/account/account-router");
-const usersRouter = require("./api/users/users-router");
+const resetPasswordRouter = require("./api/reset-password/reset-password-router");
 const searchRouter = require("./api/search/search-router");
-const session = require("./session");
+const signS3Router = require("./api/sign-s3/sign-s3-router");
+const signupRouter = require("./api/signup/signup-router");
+const usersRouter = require("./api/users/users-router");
 
 app = express();
 app.set("view engine", "ejs");
@@ -32,8 +36,11 @@ app.get("/", requireLogin, (_req, res, _next) => {
 app.use("/account", accountRouter);
 app.use("/activate", activateRouter);
 app.use("/edit-profile", editProfileRouter);
+app.use("/friend-requests", friendRequestsRouter);
+app.use("/groups", groupsRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
+app.use("/reset-password", resetPasswordRouter);
 app.use("/search", searchRouter);
 app.use("/sign-s3", signS3Router);
 app.use("/signup", signupRouter);
