@@ -18,6 +18,7 @@ const usersRouter = require("./api/users/users-router");
 
 app = express();
 app.set("view engine", "ejs");
+app.set("views", __dirname + "/client/views");
 
 // Allow express to parse form input
 app.use(express.urlencoded({ extended: true }));
@@ -43,7 +44,7 @@ app.use("/sign-s3", signS3Router);
 app.use("/signup", signupRouter);
 app.use("/users", usersRouter);
 
-app.use("/public", express.static(__dirname + "/public"));
+app.use("/public", express.static(__dirname + "/client/public"));
 
 app.get("*", (_req, res, _next) => {
     res.render("layout", {
