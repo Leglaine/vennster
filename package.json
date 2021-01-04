@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon -r dotenv/config server.js"
+    "dev": "nodemon -r dotenv/config server.js",
+    "db:create": "scripts/create-db.js"
   },
   "dependencies": {
     "aws-sdk": "^2.817.0",
