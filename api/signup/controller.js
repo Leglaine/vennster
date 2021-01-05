@@ -1,9 +1,9 @@
-const asyncHandler = require("../../utils/async");
-const db = require("../../db");
+const asyncHandler = require("../utils/async");
+const db = require("../utils/db");
 const bcrypt = require("bcrypt");
-const { Err } = require("../../utils/error");
+const { Err } = require("../utils/error");
 const { DateTime } = require("luxon");
-const { sendVerificationEmail } = require("../../utils/email");
+const { sendVerificationEmail } = require("../utils/email");
 
 exports.getSignup = (req, res, next) => {
     res.render("layout", { title: "Sign Up", main: "signup" });

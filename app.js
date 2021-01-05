@@ -1,20 +1,20 @@
 const express = require("express");
-const { handleError } = require("./utils/error");
-const session = require("./session");
+const { handleError } = require("./api/utils/error");
+const session = require("./api/utils/session");
 
-const accountRouter = require("./api/account/account-router");
-const activateRouter = require("./api/activate/activate-router");
-const editProfileRouter = require("./api/edit-profile/edit-profile-router");
-const feedRouter = require("./api/feed/feed-router");
-const friendRequestsRouter = require("./api/friend-requests/friend-requests-router");
-const groupsRouter = require("./api/groups/groups-router");
-const loginRouter = require("./api/login/login-router");
-const logoutRouter = require("./api/logout/logout-router");
-const resetPasswordRouter = require("./api/reset-password/reset-password-router");
-const searchRouter = require("./api/search/search-router");
-const signS3Router = require("./api/sign-s3/sign-s3-router");
-const signupRouter = require("./api/signup/signup-router");
-const usersRouter = require("./api/users/users-router");
+const accountRouter = require("./api/account/router");
+const activateRouter = require("./api/activate/router");
+const editProfileRouter = require("./api/edit-profile/router");
+const feedRouter = require("./api/feed/router");
+const friendRequestsRouter = require("./api/friend-requests/router");
+const groupsRouter = require("./api/groups/router");
+const loginRouter = require("./api/login/router");
+const logoutRouter = require("./api/logout/router");
+const resetPasswordRouter = require("./api/reset-password/router");
+const searchRouter = require("./api/search/router");
+const signS3Router = require("./api/sign-s3/router");
+const signupRouter = require("./api/signup/router");
+const usersRouter = require("./api/users/router");
 
 app = express();
 app.set("view engine", "ejs");

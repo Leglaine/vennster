@@ -1,6 +1,6 @@
-const asyncHandler = require("../../utils/async");
-const { Err } = require("../../utils/error");
-const db = require("../../db");
+const asyncHandler = require("../utils/async");
+const { Err } = require("../utils/error");
+const db = require("../utils/db");
 
 exports.getActivate = asyncHandler(async (req, res, _next) => {
     const response = await db.query("SELECT * FROM codes WHERE code = $1", [

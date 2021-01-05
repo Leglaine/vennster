@@ -1,5 +1,5 @@
-const db = require("../../db");
-const asyncHandler = require("../../utils/async");
+const db = require("../utils/db");
+const asyncHandler = require("../utils/async");
 
 exports.getEditProfile = asyncHandler(async (req, res, _next) => {
     const user = await db.query("SELECT * FROM users WHERE id = $1", [

@@ -1,5 +1,5 @@
-const db = require("../../db");
-const asyncHandler = require("../../utils/async");
+const db = require("../utils/db");
+const asyncHandler = require("../utils/async");
 
 exports.getUser = asyncHandler(async (req, res, _next) => {
     const id = req.params.id;

@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const db = require("../db");
-const asyncHandler = require("./async");
+const asyncHandler = require("../async");
 const { hash } = require("bcrypt");
 
 const transporter = nodemailer.createTransport({
