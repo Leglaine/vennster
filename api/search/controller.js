@@ -1,5 +1,5 @@
 const db = require("../utils/db");
-const asyncHandler = require("../utils/async");
+const asyncHandler = require("express-async-handler");
 
 exports.getSearch = asyncHandler(async (req, res, next) => {
     const q = req.query.q;

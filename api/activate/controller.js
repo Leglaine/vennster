@@ -1,4 +1,4 @@
-const asyncHandler = require("../utils/async");
+const asyncHandler = require("express-async-handler");
 const { Err } = require("../utils/error");
 const db = require("../utils/db");
 
