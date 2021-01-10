@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const controller = require("./controller");
-const { requireLogin } = require("../utils/login");
+const { requireLogin } = require("../../helpers/login");
 
-router.get("/:id", requireLogin, controller.getUser);
+router.get("/", requireLogin, controller.getFeed);
 
 module.exports = router;

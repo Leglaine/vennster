@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
-const { Err } = require("../utils/error");
-const db = require("../utils/db");
+const { Err } = require("../../helpers/error");
+const db = require("../../db");
 
 exports.getActivate = asyncHandler(async (req, res, _next) => {
     const response = await db.query("SELECT * FROM codes WHERE code = $1", [

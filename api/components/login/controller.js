@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
-const db = require("../utils/db");
+const db = require("../../db");
 const bcrypt = require("bcrypt");
-const { Err } = require("../utils/error");
+const { Err } = require("../../helpers/error");
 
 exports.getLogin = (req, res, _next) => {
     delete req.session.user;

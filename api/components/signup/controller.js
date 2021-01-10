@@ -1,9 +1,9 @@
 const asyncHandler = require("express-async-handler");
-const db = require("../utils/db");
+const db = require("../../db");
 const bcrypt = require("bcrypt");
-const { Err } = require("../utils/error");
+const { Err } = require("../../helpers/error");
 const { DateTime } = require("luxon");
-const { sendVerificationEmail } = require("../utils/email");
+const { sendVerificationEmail } = require("../../helpers/email");
 
 exports.getSignup = (req, res, next) => {
     res.render("layout", { title: "Sign Up", main: "signup" });

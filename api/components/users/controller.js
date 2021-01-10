@@ -1,4 +1,4 @@
-const db = require("../utils/db");
+const db = require("../../db");
 const asyncHandler = require("express-async-handler");
 
 exports.getUser = asyncHandler(async (req, res, _next) => {
