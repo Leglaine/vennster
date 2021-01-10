@@ -1,10 +1,14 @@
 <h1>Search</h1>
+
 <form id="mobile-search" class="form" action="/users" method="GET">
     <input class="form__input" name="name" placeholder="Search" type="text" />
     <button class="form__button">Go</button>
 </form>
+
 <% if (results.length < 1) { %>
-<p>No results.</p>
-<% } %> <% for (i = 0; i < results.length; i++) { %>
-<p><%= results[i]["name"] %></p>
+    <p>No results.</p>
+<% } %>
+
+<% for (i = 0; i < results.length; i++) { %>
+    <p><%= results[i]["name"] %></p>
 <% } %>

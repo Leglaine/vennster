@@ -12,7 +12,6 @@ const loginRouter = require("./api/components/login/router");
 const logoutRouter = require("./api/components/logout/router");
 const resetPasswordRouter = require("./api/components/reset-password/router");
 const signS3Router = require("./api/components/sign-s3/router");
-const signupRouter = require("./api/components/signup/router");
 const usersRouter = require("./api/components/users/router");
 
 app = express();
@@ -39,8 +38,11 @@ app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/reset-password", resetPasswordRouter);
 app.use("/sign-s3", signS3Router);
-app.use("/signup", signupRouter);
 app.use("/users", usersRouter);
+
+app.get("/signup", (req, res, next) => {
+    res.render("layout", { title: "Sign Up", main: "signup" });
+});
 
 app.use("/public", express.static(`${__dirname}/client/public`));
 
