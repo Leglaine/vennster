@@ -1,6 +1,19 @@
 const db = require("../../db");
 const asyncHandler = require("express-async-handler");
 
+exports.getUsers = asyncHandler(async (req, res, _next) => {
+    const name = req.query.name;
+    const results = await db.query("SELECT * FROM users WHERE name ILIKE $1", [
+        name
+    ]);
+    const rows = results["rows"];
+    res.render("layout", {
+        title: "Search",
+        main: "search",
+        results: rows
+    });
+});
+
 exports.getUser = asyncHandler(async (req, res, _next) => {
     const id = req.params.id;
 
